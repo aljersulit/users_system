@@ -10,10 +10,10 @@ class SignupControl extends SignupModel {
 
   function __construct(string $username, string $password, string $checkPassword, string $email)
   {
-    $this->username = $username;
-    $this->password = $password;
-    $this->checkPassword = $checkPassword;
-    $this->email = $email;
+    $this->username = $this->sanitize_input($username);
+    $this->password = $this->sanitize_input($password);
+    $this->checkPassword = $this->sanitize_input($checkPassword);
+    $this->email = $this->sanitize_input($email);
   }
 
   public function signup() {
@@ -30,7 +30,7 @@ class SignupControl extends SignupModel {
       $_SESSION["username_taken"] = "Username is taken";
     }
 
-    if (!empty($this->password) && $this->isPasswordInvalid()) {
+    if ($this->isPasswordInvalid()) {
       $_SESSION["password_error"] = "Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character.";
     }else if ($this->passwordMismatch()) {
       $_SESSION["password_mismatch"] = "Password did not match";
@@ -112,11 +112,11 @@ class SignupControl extends SignupModel {
     }
   }
 
-  // private function sanitize_input($data)
-  // {
-  //   $data = trim($data);
-  //   $data = stripslashes($data);
-  //   $data = htmlspecialchars($data);
-  //   return $data;
-  // }
+  private function sanitize_input($data)
+  {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
 }
