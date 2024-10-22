@@ -12,6 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   require_once "config_session.inc.php";
 
+  $user = new LoginControl($username_or_email, $password);
+  
+
   header("Location: ../index.php");
   exit();
 } else {
