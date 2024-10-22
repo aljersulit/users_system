@@ -26,6 +26,8 @@ $signup_view = new signupView();
       <div class="content">
 
         <h2>Sign up</h2>
+
+        <?php $signup_view->missing_input(); ?>
         
         <form class="form" action="../includes/signup.inc.php" method="POST">
 

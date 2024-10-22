@@ -87,6 +87,11 @@ section .signin .content
   flex-direction: column;
   gap: 40px;
 }
+
+section .signin .content p {
+  color: rgb(255, 28, 28);
+}
+
 section .signin .content h2 
 {
   font-size: 2em;

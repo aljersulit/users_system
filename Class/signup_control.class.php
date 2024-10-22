@@ -18,32 +18,34 @@ class SignupControl extends SignupModel {
 
   public function signup() {
     
-    // if ($this->emptyInputs()) {
-    //   $_SESSION["missing_input"] = "Please complete all the fields";
-    // }
+    if ($this->emptyInputs()) {
+      $_SESSION["missing_input"] = "Please complete all the fields";
+    } else {
 
-    if ($this->isUsernameInvalid()) {
-      $_SESSION["username_error"] = "Must be alphanumeric 5 to 25 characters long";
+      if ($this->isUsernameInvalid()) {
+        $_SESSION["username_error"] = "Must be alphanumeric 5 to 25 characters long";
+      }
+  
+      if ($this->isUsernameTaken()) {
+        $_SESSION["username_taken"] = "Username is taken";
+      }
+  
+      if ($this->isPasswordInvalid()) {
+        $_SESSION["password_error"] = "Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character.";
+      }else if ($this->passwordMismatch()) {
+        $_SESSION["password_mismatch"] = "Password did not match";
+      }
+  
+      if ($this->invalidEmail()) {
+        $_SESSION["email_error"] = "Please enter a valid email";
+      }
+  
+      if ($this->isEmailTaken()) {
+        $_SESSION["email_taken"] = "Email is already used";
+      }
+
     }
 
-    if ($this->isUsernameTaken()) {
-      $_SESSION["username_taken"] = "Username is taken";
-    }
-
-    if ($this->isPasswordInvalid()) {
-      $_SESSION["password_error"] = "Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character.";
-    }else if ($this->passwordMismatch()) {
-      $_SESSION["password_mismatch"] = "Password did not match";
-    }
-
-    if ($this->invalidEmail()) {
-      $_SESSION["email_error"] = "Please enter a valid email";
-    }
-
-
-    if ($this->isEmailTaken()) {
-      $_SESSION["email_taken"] = "Email is already used";
-    }
 
     if (isset($_SESSION["missing_input"]) || isset($_SESSION["username_error"])|| isset($_SESSION["password_error"]) || isset($_SESSION["password_mismatch"]) || isset($_SESSION["email_error"]) || isset($_SESSION["username_taken"]) || isset($_SESSION["email_taken"])) {
       

@@ -59,7 +59,9 @@ class signupView {
 
   public function missing_input() {
     if (isset($_SESSION["missing_input"])) {
-
+      $value = $_SESSION["missing_input"];
+      echo "<p class='error'>$value</p>";
+      unset($_SESSION['missing_input']);
     }
   }
 }
