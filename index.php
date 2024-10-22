@@ -1,5 +1,8 @@
 <?php
 ini_set("display_errors", 1);
+require_once "Class/login_view.class.php";
+require_once "includes/config_session.inc.php";
+$loginView = new LoginView();
 ?>
 
 <!doctype html>
@@ -23,6 +26,8 @@ ini_set("display_errors", 1);
       <div class="content">
 
         <h2>Sign In</h2>
+
+        <?php $loginView->view_login_error(); ?>
 
         <form class="form" action="./includes/login.inc.php" method="POST">
 
