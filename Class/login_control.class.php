@@ -12,6 +12,16 @@ class LoginControl {
     $this->password = $this->sanitize_input($password);
   }
 
+  // Create login method
+
+  private function check_if_username() {
+    if (!filter_var($this->username_or_email, FILTER_VALIDATE_EMAIL)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   private function sanitize_input($data)
   {
     $data = trim($data);
