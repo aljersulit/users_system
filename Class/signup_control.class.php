@@ -17,37 +17,39 @@ class SignupControl extends SignupModel {
   }
 
   public function signup() {
+    $errors = [];
     
     if ($this->emptyInputs()) {
-      $_SESSION["missing_input"] = "Please complete all the fields";
+      $errors["missing_input"] = "Please complete all the fields";
     } else {
 
       if ($this->isUsernameInvalid()) {
-        $_SESSION["username_error"] = "Must be alphanumeric 5 to 25 characters long";
+        $errors["username_error"] = "Must be alphanumeric 5 to 25 characters long";
       }
   
       if ($this->isUsernameTaken()) {
-        $_SESSION["username_taken"] = "Username is taken";
+        $errors["username_taken"] = "Username is taken";
       }
   
       if ($this->isPasswordInvalid()) {
-        $_SESSION["password_error"] = "Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character.";
+        $errors["password_error"] = "Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character.";
       }else if ($this->passwordMismatch()) {
-        $_SESSION["password_mismatch"] = "Password did not match";
+        $errors["password_mismatch"] = "Password did not match";
       }
   
       if ($this->invalidEmail()) {
-        $_SESSION["email_error"] = "Please enter a valid email";
+        $errors["email_error"] = "Please enter a valid email";
       }
   
       if ($this->isEmailTaken()) {
-        $_SESSION["email_taken"] = "Email is already used";
+        $errors["email_taken"] = "Email is already used";
       }
 
     }
 
 
-    if (isset($_SESSION["missing_input"]) || isset($_SESSION["username_error"])|| isset($_SESSION["password_error"]) || isset($_SESSION["password_mismatch"]) || isset($_SESSION["email_error"]) || isset($_SESSION["username_taken"]) || isset($_SESSION["email_taken"])) {
+    if ($errors) {
+      $_SESSION["signup_errors"] = $errors;
       
       $_SESSION["username"] = $this->username;
       $_SESSION["email"] = $this->email;

@@ -43,14 +43,14 @@ $signup_view = new signupView();
             <input type="password" name="password"> <i>Password</i>
             
           </div>
-          <?php if (isset($_SESSION["password_error"])) $signup_view->password_error() ?>
+          <?php if (isset($_SESSION["signup_errors"]["password_error"])) $signup_view->password_error() ?>
 
           <div class="inputBox">
 
             <input type="password" name="checkPassword"> <i>Confirm Password</i>
 
           </div>
-          <?php if (isset($_SESSION["password_mismatch"])) $signup_view->password_error() ?>
+          <?php if (isset($_SESSION["signup_errors"]["password_mismatch"])) $signup_view->password_error() ?>
 
           <div class="inputBox">
 
