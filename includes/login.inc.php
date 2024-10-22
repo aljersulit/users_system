@@ -3,7 +3,7 @@
 ini_set("display_errors", 1);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  $username_or_email = $_POST["username"];
+  $username_or_email = $_POST["username_or_email"];
   $password = $_POST["password"];
 
   require_once "../Class/Dbhandler.class.php";
@@ -13,9 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   require_once "config_session.inc.php";
 
   $user = new LoginControl($username_or_email, $password);
-  
+  $user->login_user();
 
-  header("Location: ../index.php");
+  header("Location: ../index.php?login=true");
+  
   exit();
 } else {
   header("Location: ../index.php");
