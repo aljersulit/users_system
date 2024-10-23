@@ -15,6 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $user = new LoginControl($username_or_email, $password);
   $user->login_user();
 
+  $newSessionID = session_create_id() . "_" . $_SESSION["user_logged_in"]["user_id"];
+  session_id($newSessionID);
+
   header("Location: ../index.php");
   
   exit();
