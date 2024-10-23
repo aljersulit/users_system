@@ -47,6 +47,12 @@ class signupView {
     unset($_SESSION["signup_errors"]['missing_input']);
   }
 
+  public function signup_success_notif() {
+    if (isset($_GET["signup_success"]) && $_GET["signup_success"] == true) {
+      echo "<a href='../index.php' class='signup_success'>Sign up successful.<br> Click here to proceed to login.</a>";
+    }
+  }
+
   public function keep_username() {
     if (isset($_SESSION["username"]) && (!isset($_SESSION["signup_errors"]["username_error"]) && !isset($_SESSION["signup_errors"]["username_taken"]))) {
       $value = $_SESSION["username"];
