@@ -28,6 +28,9 @@ section
   flex-wrap: wrap;
   overflow: hidden ;
 }
+section.hidden {
+  display: none;
+}
 section::before 
 {
   content: '';
@@ -180,6 +183,10 @@ section .container .content .form .error {
 input[type="submit"]:active
 {
   opacity: 0.6;
+}
+
+.user {
+  color: #fff;
 }
 @media (max-width: 900px)
 {
