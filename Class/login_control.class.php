@@ -20,6 +20,8 @@ class LoginControl extends LoginModel {
     }else if ($this->is_password_incorrect($this->password, $userData['pwd'])) {
       $error = $this->check_if_username() ? "Wrong username or password" : "Wrong email or password";
       $_SESSION["login_error"] = $error;
+    } else {
+      $_SESSION["user_logged_in"] = $userData;
     }
   }
 

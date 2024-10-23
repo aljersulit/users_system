@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $user = new LoginControl($username_or_email, $password);
   $user->login_user();
 
-  header("Location: ../index.php?login_success=true");
+  header("Location: ../index.php");
   
   exit();
 } else {
